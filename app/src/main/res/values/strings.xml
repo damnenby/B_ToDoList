@@ -10,4 +10,5 @@
     <string name="todo_categories_placeholder">Kategorie(n): Allgemein</string>
     <string name="todo_due_date_placeholder">Fällig bis: Kein Datum</string>
     <string name="todo_status_open">Offen</string>
+    <string name="empty_todo_list">Keine Todos vorhanden</string>
 </resources>
