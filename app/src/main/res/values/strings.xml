@@ -21,6 +21,9 @@
     <string name="button_choose_date">Datum auswählen</string>
     <string name="button_save">Speichern</string>
     <string name="button_delete">Löschen</string>
+    <string name="error_title_required">Bitte einen Titel eingeben</string>
+    <string name="todo_saved">Todo gespeichert</string>
+    <string name="todo_deleted">Todo gelöscht</string>
     <string-array name="priority_values">
         <item>Hoch</item>
         <item>Mittel</item>

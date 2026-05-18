@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.b_todolist.data.TodoRepository;
 import com.example.b_todolist.model.Todo;
@@ -25,6 +26,7 @@ public class DetailActivity extends Activity {
     private EditText categoriesEdit;
     private CheckBox doneCheckBox;
     private TextView dueDateText;
+    private Button saveButton;
     private Button deleteButton;
     private Todo currentTodo;
     private long dueDateMillis;
@@ -40,10 +42,12 @@ public class DetailActivity extends Activity {
         categoriesEdit = findViewById(R.id.edit_categories);
         doneCheckBox = findViewById(R.id.check_done);
         dueDateText = findViewById(R.id.text_due_date);
+        saveButton = findViewById(R.id.button_save);
         deleteButton = findViewById(R.id.button_delete);
 
         setupPrioritySpinner();
         loadTodoFromIntent();
+        setupButtonListeners();
     }
 
     private void setupPrioritySpinner() {
@@ -102,5 +106,59 @@ public class DetailActivity extends Activity {
                 return;
             }
         }
+    }
+
+    private void setupButtonListeners() {
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveTodo();
+            }
+        });
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteTodo();
+            }
+        });
+    }
+
+    private void saveTodo() {
+        String title = titleEdit.getText().toString().trim();
+        if (title.isEmpty()) {
+            Toast.makeText(this, R.string.error_title_required, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String description = descriptionEdit.getText().toString().trim();
+        String priority = prioritySpinner.getSelectedItem().toString();
+        String categories = categoriesEdit.getText().toString().trim();
+        boolean done = doneCheckBox.isChecked();
+
+        // Das Formular wird in ein Todo-Objekt zurückgeschrieben.
+        if (currentTodo == null) {
+            Todo newTodo = new Todo(-1, title, description, priority, categories, done, dueDateMillis);
+            TodoRepository.add(newTodo);
+        } else {
+            currentTodo.setTitle(title);
+            currentTodo.setDescription(description);
+            currentTodo.setPriority(priority);
+            currentTodo.setCategories(categories);
+            currentTodo.setDone(done);
+            currentTodo.setDueDateMillis(dueDateMillis);
+            TodoRepository.update(currentTodo);
+        }
+
+        Toast.makeText(this, R.string.todo_saved, Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
+    private void deleteTodo() {
+        if (currentTodo != null) {
+            TodoRepository.deleteById(currentTodo.getId());
+            Toast.makeText(this, R.string.todo_deleted, Toast.LENGTH_SHORT).show();
+        }
+        finish();
     }
 }
