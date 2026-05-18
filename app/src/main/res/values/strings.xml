@@ -11,4 +11,19 @@
     <string name="todo_due_date_placeholder">Fällig bis: Kein Datum</string>
     <string name="todo_status_open">Offen</string>
     <string name="empty_todo_list">Keine Todos vorhanden</string>
+    <string name="detail_title">Todo bearbeiten</string>
+    <string name="label_title">Titel</string>
+    <string name="label_description">Beschreibung</string>
+    <string name="label_priority">Priorität</string>
+    <string name="label_categories">Kategorie(n)</string>
+    <string name="label_done">Erledigt</string>
+    <string name="label_due_date">Fällig bis</string>
+    <string name="button_choose_date">Datum auswählen</string>
+    <string name="button_save">Speichern</string>
+    <string name="button_delete">Löschen</string>
+    <string-array name="priority_values">
+        <item>Hoch</item>
+        <item>Mittel</item>
+        <item>Niedrig</item>
+    </string-array>
 </resources>
