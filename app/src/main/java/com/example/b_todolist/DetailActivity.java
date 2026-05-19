@@ -1,6 +1,7 @@
 package com.example.b_todolist;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -16,6 +17,8 @@ import com.example.b_todolist.data.TodoRepository;
 import com.example.b_todolist.model.Todo;
 import com.example.b_todolist.util.DateUtils;
 
+import java.util.Calendar;
+
 public class DetailActivity extends Activity {
     public static final String EXTRA_TODO_ID = "todo_id";
     private static final int NEW_TODO_ID = -1;
@@ -26,6 +29,7 @@ public class DetailActivity extends Activity {
     private EditText categoriesEdit;
     private CheckBox doneCheckBox;
     private TextView dueDateText;
+    private Button chooseDateButton;
     private Button saveButton;
     private Button deleteButton;
     private Todo currentTodo;
@@ -42,6 +46,7 @@ public class DetailActivity extends Activity {
         categoriesEdit = findViewById(R.id.edit_categories);
         doneCheckBox = findViewById(R.id.check_done);
         dueDateText = findViewById(R.id.text_due_date);
+        chooseDateButton = findViewById(R.id.button_choose_date);
         saveButton = findViewById(R.id.button_save);
         deleteButton = findViewById(R.id.button_delete);
 
@@ -82,7 +87,7 @@ public class DetailActivity extends Activity {
     private void prepareNewTodo() {
         currentTodo = null;
         dueDateMillis = 0L;
-        dueDateText.setText(getString(R.string.todo_due_date_placeholder));
+        updateDueDateText();
         deleteButton.setVisibility(View.GONE);
         setPrioritySelection("Mittel");
     }
@@ -94,7 +99,7 @@ public class DetailActivity extends Activity {
         categoriesEdit.setText(todo.getCategories());
         doneCheckBox.setChecked(todo.isDone());
         dueDateMillis = todo.getDueDateMillis();
-        dueDateText.setText(getString(R.string.label_due_date) + ": " + DateUtils.formatDate(dueDateMillis));
+        updateDueDateText();
     }
 
     private void setPrioritySelection(String priority) {
@@ -109,6 +114,13 @@ public class DetailActivity extends Activity {
     }
 
     private void setupButtonListeners() {
+        chooseDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePickerDialog();
+            }
+        });
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -160,5 +172,45 @@ public class DetailActivity extends Activity {
             Toast.makeText(this, R.string.todo_deleted, Toast.LENGTH_SHORT).show();
         }
         finish();
+    }
+
+    private void showDatePickerDialog() {
+        Calendar calendar = Calendar.getInstance();
+        if (dueDateMillis > 0L) {
+            calendar.setTimeInMillis(dueDateMillis);
+        }
+
+        DatePickerDialog dialog = new DatePickerDialog(
+                this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(android.widget.DatePicker view, int year, int month, int dayOfMonth) {
+                        saveSelectedDate(year, month, dayOfMonth);
+                    }
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+        );
+        dialog.show();
+    }
+
+    private void saveSelectedDate(int year, int month, int dayOfMonth) {
+        Calendar selectedDate = Calendar.getInstance();
+        selectedDate.set(Calendar.YEAR, year);
+        selectedDate.set(Calendar.MONTH, month);
+        selectedDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        selectedDate.set(Calendar.HOUR_OF_DAY, 0);
+        selectedDate.set(Calendar.MINUTE, 0);
+        selectedDate.set(Calendar.SECOND, 0);
+        selectedDate.set(Calendar.MILLISECOND, 0);
+
+        // Für Teil 1 speichern wir das Datum einfach als Millisekundenwert.
+        dueDateMillis = selectedDate.getTimeInMillis();
+        updateDueDateText();
+    }
+
+    private void updateDueDateText() {
+        dueDateText.setText(getString(R.string.label_due_date) + ": " + DateUtils.formatDate(dueDateMillis));
     }
 }
