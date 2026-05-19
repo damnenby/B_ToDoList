@@ -25,9 +25,27 @@
     <string name="todo_saved">Todo gespeichert</string>
     <string name="todo_deleted">Todo gelöscht</string>
     <string name="settings_coming_next">Einstellungen folgen im nächsten Schritt</string>
+    <string name="pref_font_size_title">Schriftgröße der Liste</string>
+    <string name="pref_font_size_summary">Legt die Schriftgröße der Todo-Einträge fest</string>
     <string-array name="priority_values">
         <item>Hoch</item>
         <item>Mittel</item>
         <item>Niedrig</item>
+    </string-array>
+    <string-array name="font_size_labels">
+        <item>14 sp</item>
+        <item>16 sp</item>
+        <item>18 sp</item>
+        <item>20 sp</item>
+        <item>22 sp</item>
+        <item>24 sp</item>
+    </string-array>
+    <string-array name="font_size_values">
+        <item>14</item>
+        <item>16</item>
+        <item>18</item>
+        <item>20</item>
+        <item>22</item>
+        <item>24</item>
     </string-array>
 </resources>
