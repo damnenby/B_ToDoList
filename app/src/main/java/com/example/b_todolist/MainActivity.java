@@ -2,6 +2,7 @@ package com.example.b_todolist;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.preference.PreferenceManager;
 
 import com.example.b_todolist.data.TodoRepository;
 import com.example.b_todolist.model.Todo;
@@ -20,6 +22,9 @@ import com.example.b_todolist.ui.TodoAdapter;
 import java.util.List;
 
 public class MainActivity extends Activity {
+    private static final String PREF_FONT_SIZE = "font_size";
+    private static final String DEFAULT_FONT_SIZE = "18";
+
     private TodoAdapter todoAdapter;
     private TextView emptyText;
     private RecyclerView todoRecyclerView;
@@ -50,12 +55,12 @@ public class MainActivity extends Activity {
 
         todoRecyclerView.setAdapter(todoAdapter);
         setupSwipeToDelete();
-        loadTodos();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        applyFontSizePreference();
         loadTodos();
     }
 
@@ -117,6 +122,18 @@ public class MainActivity extends Activity {
         } else {
             emptyText.setVisibility(View.GONE);
             todoRecyclerView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void applyFontSizePreference() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String fontSizeValue = preferences.getString(PREF_FONT_SIZE, DEFAULT_FONT_SIZE);
+
+        try {
+            float fontSize = Float.parseFloat(fontSizeValue);
+            todoAdapter.setTextSize(fontSize);
+        } catch (NumberFormatException exception) {
+            todoAdapter.setTextSize(Float.parseFloat(DEFAULT_FONT_SIZE));
         }
     }
 
