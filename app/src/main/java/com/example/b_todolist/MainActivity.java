@@ -87,11 +87,17 @@ public class MainActivity extends Activity {
         }
 
         if (itemId == R.id.action_settings) {
-            Toast.makeText(this, R.string.settings_coming_next, Toast.LENGTH_SHORT).show();
+            openSettingsActivity();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void openSettingsActivity() {
+        // Explicit Intent: MainActivity öffnet gezielt die SettingsActivity.
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
     }
 
     private void openDetailActivity(int todoId) {
