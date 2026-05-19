@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.B_ToDoList">
         <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:label="@string/menu_settings"
+            android:theme="@style/Theme.B_ToDoList" />
+
+        <activity
             android:name=".DetailActivity"
             android:exported="false"
             android:label="@string/detail_title"
