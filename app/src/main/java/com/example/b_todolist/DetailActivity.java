@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.b_todolist.data.TodoRepository;
 import com.example.b_todolist.model.Todo;
 import com.example.b_todolist.util.DateUtils;
+import com.example.b_todolist.util.JinglePlayer;
 
 import java.util.Calendar;
 
@@ -147,6 +148,7 @@ public class DetailActivity extends Activity {
         String priority = prioritySpinner.getSelectedItem().toString();
         String categories = categoriesEdit.getText().toString().trim();
         boolean done = doneCheckBox.isChecked();
+        boolean wasDone = currentTodo != null && currentTodo.isDone();
 
         // Das Formular wird in ein Todo-Objekt zurückgeschrieben.
         if (currentTodo == null) {
@@ -160,6 +162,10 @@ public class DetailActivity extends Activity {
             currentTodo.setDone(done);
             currentTodo.setDueDateMillis(dueDateMillis);
             TodoRepository.update(currentTodo);
+        }
+
+        if (done && !wasDone) {
+            JinglePlayer.playRewardJingle();
         }
 
         Toast.makeText(this, R.string.todo_saved, Toast.LENGTH_SHORT).show();
