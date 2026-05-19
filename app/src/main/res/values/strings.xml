@@ -24,6 +24,7 @@
     <string name="error_title_required">Bitte einen Titel eingeben</string>
     <string name="todo_saved">Todo gespeichert</string>
     <string name="todo_deleted">Todo gelöscht</string>
+    <string name="settings_coming_next">Einstellungen folgen im nächsten Schritt</string>
     <string-array name="priority_values">
         <item>Hoch</item>
         <item>Mittel</item>
