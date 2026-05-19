@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.b_todolist.data.TodoRepository;
@@ -45,6 +47,7 @@ public class MainActivity extends Activity {
         });
 
         todoRecyclerView.setAdapter(todoAdapter);
+        setupSwipeToDelete();
         loadTodos();
     }
 
@@ -72,5 +75,37 @@ public class MainActivity extends Activity {
             emptyText.setVisibility(View.GONE);
             todoRecyclerView.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void setupSwipeToDelete() {
+        ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(
+                0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT
+        ) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView,
+                                  RecyclerView.ViewHolder viewHolder,
+                                  RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getBindingAdapterPosition();
+                if (position == RecyclerView.NO_POSITION) {
+                    return;
+                }
+
+                Todo todo = todoAdapter.getTodoAt(position);
+
+                // Swipe löscht das Todo direkt aus der Laufzeit-Liste.
+                TodoRepository.deleteById(todo.getId());
+                loadTodos();
+                Toast.makeText(MainActivity.this, R.string.todo_deleted, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
+        itemTouchHelper.attachToRecyclerView(todoRecyclerView);
     }
 }
