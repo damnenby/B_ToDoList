@@ -50,6 +50,9 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
     }
 
     public Todo getTodoAt(int position) {
+        if (position < 0 || position >= todos.size()) {
+            return null;
+        }
         return todos.get(position);
     }
 
@@ -89,12 +92,13 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
             dueDateText.setText("Fällig bis: " + DateUtils.formatDate(todo.getDueDateMillis()));
 
             // Die Schriftgröße kommt später aus den Einstellungen.
+            float subTextSize = Math.max(12f, textSizeSp - 4f);
             titleText.setTextSize(textSizeSp);
-            descriptionText.setTextSize(textSizeSp - 4f);
-            priorityText.setTextSize(textSizeSp - 4f);
-            statusText.setTextSize(textSizeSp - 4f);
-            categoriesText.setTextSize(textSizeSp - 4f);
-            dueDateText.setTextSize(textSizeSp - 4f);
+            descriptionText.setTextSize(subTextSize);
+            priorityText.setTextSize(subTextSize);
+            statusText.setTextSize(subTextSize);
+            categoriesText.setTextSize(subTextSize);
+            dueDateText.setTextSize(subTextSize);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

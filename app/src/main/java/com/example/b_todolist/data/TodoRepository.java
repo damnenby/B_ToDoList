@@ -74,13 +74,13 @@ public class TodoRepository {
 
     // Feste Reihenfolge aus Teil 1: hohe Priorität steht in der Liste zuerst.
     private static int getPriorityValue(String priority) {
-        if ("Hoch".equals(priority)) {
+        if (Todo.PRIORITY_HIGH.equals(priority)) {
             return 1;
         }
-        if ("Mittel".equals(priority)) {
+        if (Todo.PRIORITY_MEDIUM.equals(priority)) {
             return 2;
         }
-        if ("Niedrig".equals(priority)) {
+        if (Todo.PRIORITY_LOW.equals(priority)) {
             return 3;
         }
         return 4;

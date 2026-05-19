@@ -157,6 +157,10 @@ public class MainActivity extends Activity {
                 }
 
                 Todo todo = todoAdapter.getTodoAt(position);
+                if (todo == null) {
+                    loadTodos();
+                    return;
+                }
 
                 // Swipe löscht das Todo direkt aus der Laufzeit-Liste.
                 TodoRepository.deleteById(todo.getId());

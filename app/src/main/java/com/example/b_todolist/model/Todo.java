@@ -1,6 +1,10 @@
 package com.example.b_todolist.model;
 
 public class Todo {
+    public static final String PRIORITY_HIGH = "Hoch";
+    public static final String PRIORITY_MEDIUM = "Mittel";
+    public static final String PRIORITY_LOW = "Niedrig";
+
     private int id;
     private String title;
     private String description;
@@ -10,7 +14,7 @@ public class Todo {
     private long dueDateMillis;
 
     public Todo() {
-        this(-1, "", "", "Mittel", "", false, 0L);
+        this(-1, "", "", PRIORITY_MEDIUM, "", false, 0L);
     }
 
     public Todo(int id, String title, String description, String priority,

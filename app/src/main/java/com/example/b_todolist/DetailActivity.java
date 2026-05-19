@@ -90,7 +90,7 @@ public class DetailActivity extends Activity {
         dueDateMillis = 0L;
         updateDueDateText();
         deleteButton.setVisibility(View.GONE);
-        setPrioritySelection("Mittel");
+        setPrioritySelection(Todo.PRIORITY_MEDIUM);
     }
 
     private void fillFields(Todo todo) {
@@ -111,6 +111,10 @@ public class DetailActivity extends Activity {
                 prioritySpinner.setSelection(i);
                 return;
             }
+        }
+
+        if (!Todo.PRIORITY_MEDIUM.equals(priority)) {
+            setPrioritySelection(Todo.PRIORITY_MEDIUM);
         }
     }
 
@@ -145,7 +149,7 @@ public class DetailActivity extends Activity {
         }
 
         String description = descriptionEdit.getText().toString().trim();
-        String priority = prioritySpinner.getSelectedItem().toString();
+        String priority = getSelectedPriority();
         String categories = categoriesEdit.getText().toString().trim();
         boolean done = doneCheckBox.isChecked();
         boolean wasDone = currentTodo != null && currentTodo.isDone();
@@ -218,5 +222,13 @@ public class DetailActivity extends Activity {
 
     private void updateDueDateText() {
         dueDateText.setText(getString(R.string.label_due_date) + ": " + DateUtils.formatDate(dueDateMillis));
+    }
+
+    private String getSelectedPriority() {
+        Object selectedItem = prioritySpinner.getSelectedItem();
+        if (selectedItem == null) {
+            return Todo.PRIORITY_MEDIUM;
+        }
+        return selectedItem.toString();
     }
 }
