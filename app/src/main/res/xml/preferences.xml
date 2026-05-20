@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ListPreference
+    <SeekBarPreference
         app:key="font_size"
         app:title="@string/pref_font_size_title"
         app:summary="@string/pref_font_size_summary"
-        app:entries="@array/font_size_labels"
-        app:entryValues="@array/font_size_values"
         app:defaultValue="18"
-        app:useSimpleSummaryProvider="true" />
+        app:min="14"
+        android:max="24"
+        app:seekBarIncrement="2"
+        app:showSeekBarValue="true" />
 </PreferenceScreen>
