@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,15 +30,19 @@ public class MainActivity extends Activity {
     private TextView emptyText;
     private RecyclerView todoRecyclerView;
     private Button addTodoButton;
+    private Toolbar mainToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mainToolbar = findViewById(R.id.main_toolbar);
         addTodoButton = findViewById(R.id.button_add_todo);
         emptyText = findViewById(R.id.text_empty_todos);
         todoRecyclerView = findViewById(R.id.recycler_todos);
+
+        setActionBar(mainToolbar);
 
         todoAdapter = new TodoAdapter(new TodoAdapter.OnTodoClickListener() {
             @Override
@@ -127,14 +132,24 @@ public class MainActivity extends Activity {
 
     private void applyFontSizePreference() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String fontSizeValue = preferences.getString(PREF_FONT_SIZE, DEFAULT_FONT_SIZE);
+        Object fontSizeValue = preferences.getAll().get(PREF_FONT_SIZE);
+        todoAdapter.setTextSize(readFontSize(fontSizeValue));
+    }
 
-        try {
-            float fontSize = Float.parseFloat(fontSizeValue);
-            todoAdapter.setTextSize(fontSize);
-        } catch (NumberFormatException exception) {
-            todoAdapter.setTextSize(Float.parseFloat(DEFAULT_FONT_SIZE));
+    private float readFontSize(Object fontSizeValue) {
+        if (fontSizeValue instanceof Number) {
+            return ((Number) fontSizeValue).floatValue();
         }
+
+        if (fontSizeValue instanceof String) {
+            try {
+                return Float.parseFloat((String) fontSizeValue);
+            } catch (NumberFormatException exception) {
+                return Float.parseFloat(DEFAULT_FONT_SIZE);
+            }
+        }
+
+        return Float.parseFloat(DEFAULT_FONT_SIZE);
     }
 
     private void setupSwipeToDelete() {
