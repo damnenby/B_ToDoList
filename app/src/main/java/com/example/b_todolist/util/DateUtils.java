@@ -11,8 +11,12 @@ public class DateUtils {
     }
 
     public static String formatDate(long dueDateMillis) {
+        return formatDate(dueDateMillis, "Kein Datum");
+    }
+
+    public static String formatDate(long dueDateMillis, String emptyDateText) {
         if (dueDateMillis <= 0L) {
-            return "Kein Datum";
+            return emptyDateText;
         }
 
         // Einfaches deutsches Datumsformat für die Anzeige in der Oberfläche.

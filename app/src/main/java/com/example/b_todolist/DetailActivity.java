@@ -221,7 +221,10 @@ public class DetailActivity extends Activity {
     }
 
     private void updateDueDateText() {
-        dueDateText.setText(getString(R.string.label_due_date) + ": " + DateUtils.formatDate(dueDateMillis));
+        dueDateText.setText(getString(
+                R.string.todo_due_date_format,
+                DateUtils.formatDate(dueDateMillis, getString(R.string.no_date))
+        ));
     }
 
     private String getSelectedPriority() {

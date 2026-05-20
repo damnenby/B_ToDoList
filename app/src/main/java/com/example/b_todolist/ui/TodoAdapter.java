@@ -86,10 +86,24 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         void bind(final Todo todo, float textSizeSp, final OnTodoClickListener listener) {
             titleText.setText(todo.getTitle());
             descriptionText.setText(todo.getDescription());
-            priorityText.setText("Priorität: " + todo.getPriority());
-            statusText.setText(todo.isDone() ? "Erledigt" : "Offen");
-            categoriesText.setText("Kategorie(n): " + todo.getCategories());
-            dueDateText.setText("Fällig bis: " + DateUtils.formatDate(todo.getDueDateMillis()));
+            priorityText.setText(itemView.getContext().getString(
+                    R.string.todo_priority_format,
+                    todo.getPriority()
+            ));
+            statusText.setText(todo.isDone()
+                    ? itemView.getContext().getString(R.string.todo_status_done)
+                    : itemView.getContext().getString(R.string.todo_status_open));
+            categoriesText.setText(itemView.getContext().getString(
+                    R.string.todo_categories_format,
+                    todo.getCategories()
+            ));
+            dueDateText.setText(itemView.getContext().getString(
+                    R.string.todo_due_date_format,
+                    DateUtils.formatDate(
+                            todo.getDueDateMillis(),
+                            itemView.getContext().getString(R.string.no_date)
+                    )
+            ));
 
             // Die Schriftgröße kommt später aus den Einstellungen.
             float subTextSize = Math.max(12f, textSizeSp - 4f);
