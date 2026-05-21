@@ -15,6 +15,7 @@
     <string name="todo_categories_format">Kategorie(n): %1$s</string>
     <string name="todo_due_date_format">Fällig bis: %1$s</string>
     <string name="no_date">Kein Datum</string>
+    <string name="no_category">Keine Kategorie</string>
     <string name="empty_todo_list">Keine Todos vorhanden</string>
     <string name="detail_title">Todo bearbeiten</string>
     <string name="label_title">Titel</string>
@@ -22,7 +23,6 @@
     <string name="label_priority">Priorität</string>
     <string name="label_categories">Kategorie(n)</string>
     <string name="label_done">Erledigt</string>
-    <string name="label_due_date">Fällig bis</string>
     <string name="button_choose_date">Datum auswählen</string>
     <string name="button_save">Speichern</string>
     <string name="button_delete">Löschen</string>
@@ -35,21 +35,5 @@
         <item>Hoch</item>
         <item>Mittel</item>
         <item>Niedrig</item>
-    </string-array>
-    <string-array name="font_size_labels">
-        <item>14 sp</item>
-        <item>16 sp</item>
-        <item>18 sp</item>
-        <item>20 sp</item>
-        <item>22 sp</item>
-        <item>24 sp</item>
-    </string-array>
-    <string-array name="font_size_values">
-        <item>14</item>
-        <item>16</item>
-        <item>18</item>
-        <item>20</item>
-        <item>22</item>
-        <item>24</item>
     </string-array>
 </resources>

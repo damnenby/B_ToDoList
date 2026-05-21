@@ -7,6 +7,7 @@
         app:title="@string/pref_font_size_title"
         app:summary="@string/pref_font_size_summary"
         app:defaultValue="18"
+        app:iconSpaceReserved="false"
         app:min="14"
         android:max="24"
         app:seekBarIncrement="2"

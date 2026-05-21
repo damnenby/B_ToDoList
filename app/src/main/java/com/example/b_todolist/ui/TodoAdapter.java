@@ -44,9 +44,16 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
     }
 
     public void setTodos(List<Todo> newTodos) {
+        int oldSize = todos.size();
         todos.clear();
+        if (oldSize > 0) {
+            notifyItemRangeRemoved(0, oldSize);
+        }
+
         todos.addAll(newTodos);
-        notifyDataSetChanged();
+        if (!todos.isEmpty()) {
+            notifyItemRangeInserted(0, todos.size());
+        }
     }
 
     public Todo getTodoAt(int position) {
@@ -58,7 +65,9 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
 
     public void setTextSize(float sizeSp) {
         textSizeSp = sizeSp;
-        notifyDataSetChanged();
+        if (!todos.isEmpty()) {
+            notifyItemRangeChanged(0, todos.size());
+        }
     }
 
     public interface OnTodoClickListener {
@@ -93,9 +102,14 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
             statusText.setText(todo.isDone()
                     ? itemView.getContext().getString(R.string.todo_status_done)
                     : itemView.getContext().getString(R.string.todo_status_open));
+            String categories = todo.getCategories();
+            if (categories == null || categories.trim().isEmpty()) {
+                categories = itemView.getContext().getString(R.string.no_category);
+            }
+
             categoriesText.setText(itemView.getContext().getString(
                     R.string.todo_categories_format,
-                    todo.getCategories()
+                    categories
             ));
             dueDateText.setText(itemView.getContext().getString(
                     R.string.todo_due_date_format,
