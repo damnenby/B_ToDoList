@@ -13,7 +13,6 @@ public class JinglePlayer {
         final ToneGenerator toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, 80);
         Handler handler = new Handler(Looper.getMainLooper());
 
-        // Kurzer Android-eigener Ton als einfache Belohnung ohne Audiodateien.
         toneGenerator.startTone(ToneGenerator.TONE_PROP_ACK, 160);
         handler.postDelayed(new Runnable() {
             @Override

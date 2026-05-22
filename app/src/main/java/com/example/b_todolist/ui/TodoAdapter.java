@@ -119,7 +119,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
                     )
             ));
 
-            // Die Schriftgröße kommt später aus den Einstellungen.
             float subTextSize = Math.max(12f, textSizeSp - 4f);
             titleText.setTextSize(textSizeSp);
             descriptionText.setTextSize(subTextSize);

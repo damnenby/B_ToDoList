@@ -25,7 +25,6 @@ public class SettingsActivity extends FragmentActivity {
     }
 
     private void migrateFontSizePreference() {
-        // Alte ListPreference-Werte waren Strings. Die SeekBarPreference erwartet einen Integer.
         Object fontSizeValue = PreferenceManager
                 .getDefaultSharedPreferences(this)
                 .getAll()
@@ -52,7 +51,6 @@ public class SettingsActivity extends FragmentActivity {
     public static class SettingsFragment extends PreferenceFragmentCompat {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-            // Die Einstellungen werden als XML definiert und automatisch in SharedPreferences gespeichert.
             setPreferencesFromResource(R.xml.preferences, rootKey);
         }
     }

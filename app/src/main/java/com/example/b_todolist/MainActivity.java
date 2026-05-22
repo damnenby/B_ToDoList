@@ -105,13 +105,11 @@ public class MainActivity extends Activity {
     }
 
     private void openSettingsActivity() {
-        // Explicit Intent: MainActivity öffnet gezielt die SettingsActivity.
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 
     private void openDetailActivity(int todoId) {
-        // Explicit Intent: MainActivity startet gezielt die DetailActivity.
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(DetailActivity.EXTRA_TODO_ID, todoId);
         startActivity(intent);
@@ -177,7 +175,6 @@ public class MainActivity extends Activity {
                     return;
                 }
 
-                // Swipe löscht das Todo direkt aus der Laufzeit-Liste.
                 TodoRepository.deleteById(todo.getId());
                 loadTodos();
                 Toast.makeText(MainActivity.this, R.string.todo_deleted, Toast.LENGTH_SHORT).show();

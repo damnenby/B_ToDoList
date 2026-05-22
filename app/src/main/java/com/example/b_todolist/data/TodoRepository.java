@@ -72,7 +72,6 @@ public class TodoRepository {
         });
     }
 
-    // Feste Reihenfolge aus Teil 1: hohe Priorität steht in der Liste zuerst.
     private static int getPriorityValue(String priority) {
         if (Todo.PRIORITY_HIGH.equals(priority)) {
             return 1;
@@ -86,7 +85,6 @@ public class TodoRepository {
         return 4;
     }
 
-    // Ein nicht gesetztes Datum wird beim Sortieren ans Ende geschoben.
     private static long getDateValue(Todo todo) {
         if (todo.getDueDateMillis() <= 0L) {
             return Long.MAX_VALUE;

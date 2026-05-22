@@ -19,7 +19,6 @@ public class DateUtils {
             return emptyDateText;
         }
 
-        // Einfaches deutsches Datumsformat für die Anzeige in der Oberfläche.
         SimpleDateFormat formatter = new SimpleDateFormat(DATE_PATTERN, Locale.GERMANY);
         return formatter.format(new Date(dueDateMillis));
     }

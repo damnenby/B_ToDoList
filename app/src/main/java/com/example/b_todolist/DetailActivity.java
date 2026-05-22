@@ -57,7 +57,6 @@ public class DetailActivity extends Activity {
     }
 
     private void setupPrioritySpinner() {
-        // Die Prioritäten sind in Teil 1 fest vorgegeben und kommen aus strings.xml.
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.priority_values,
@@ -154,7 +153,6 @@ public class DetailActivity extends Activity {
         boolean done = doneCheckBox.isChecked();
         boolean wasDone = currentTodo != null && currentTodo.isDone();
 
-        // Das Formular wird in ein Todo-Objekt zurückgeschrieben.
         if (currentTodo == null) {
             Todo newTodo = new Todo(-1, title, description, priority, categories, done, dueDateMillis);
             TodoRepository.add(newTodo);
@@ -215,7 +213,6 @@ public class DetailActivity extends Activity {
         selectedDate.set(Calendar.SECOND, 0);
         selectedDate.set(Calendar.MILLISECOND, 0);
 
-        // Für Teil 1 speichern wir das Datum einfach als Millisekundenwert.
         dueDateMillis = selectedDate.getTimeInMillis();
         updateDueDateText();
     }
