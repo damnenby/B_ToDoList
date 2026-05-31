@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.b_todolist.R;
@@ -99,9 +100,12 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
                     R.string.todo_priority_format,
                     todo.getPriority()
             ));
-            statusText.setText(todo.isDone()
+            boolean isDone = todo.isDone();
+            statusText.setText(isDone
                     ? itemView.getContext().getString(R.string.todo_status_done)
                     : itemView.getContext().getString(R.string.todo_status_open));
+            statusText.setTextColor(ContextCompat.getColor(itemView.getContext(),
+                    isDone ? R.color.status_done : R.color.status_open));
             String categories = todo.getCategories();
             if (categories == null || categories.trim().isEmpty()) {
                 categories = itemView.getContext().getString(R.string.no_category);

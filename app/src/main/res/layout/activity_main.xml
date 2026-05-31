@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
@@ -10,38 +11,44 @@
         android:id="@+id/main_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="@android:color/white"
-        android:elevation="4dp"
-        android:title="@string/app_name" />
+        android:background="@color/primary"
+        android:elevation="@dimen/toolbar_elevation"
+        android:title="@string/app_name"
+        android:titleTextColor="@color/button_text_light" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/screen_padding">
 
         <Button
             android:id="@+id/button_add_todo"
+            style="@style/AppButtonPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_md"
             android:text="@string/menu_new_todo" />
 
         <TextView
             android:id="@+id/text_empty_todos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="@dimen/spacing_xl"
             android:gravity="center"
             android:text="@string/empty_todo_list"
-            android:textSize="18sp" />
+            android:textColor="@color/text_secondary"
+            android:textSize="16sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_todos"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/spacing_xs"
             android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingBottom="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
 </LinearLayout>

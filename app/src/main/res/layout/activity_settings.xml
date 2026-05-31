@@ -2,18 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="16dp"
-        android:paddingTop="24dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="16dp"
+        android:background="@color/primary"
+        android:paddingStart="@dimen/screen_padding"
+        android:paddingTop="@dimen/spacing_lg"
+        android:paddingEnd="@dimen/screen_padding"
+        android:paddingBottom="@dimen/spacing_lg"
         android:text="@string/menu_settings"
-        android:textSize="22sp"
+        android:textColor="@color/button_text_light"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <FrameLayout

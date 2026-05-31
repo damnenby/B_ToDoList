@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="screen_padding">16dp</dimen>
+    <dimen name="card_padding_h">16dp</dimen>
+    <dimen name="card_padding_v">12dp</dimen>
+    <dimen name="card_margin_bottom">6dp</dimen>
+    <dimen name="card_corner">8dp</dimen>
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_sm">8dp</dimen>
+    <dimen name="spacing_md">12dp</dimen>
+    <dimen name="spacing_lg">16dp</dimen>
+    <dimen name="spacing_xl">24dp</dimen>
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="toolbar_elevation">4dp</dimen>
+</resources>

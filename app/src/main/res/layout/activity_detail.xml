@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:fillViewport="true"
     android:fitsSystemWindows="true">
 
@@ -9,13 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/screen_padding">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="@dimen/spacing_lg"
             android:text="@string/detail_title"
+            android:textColor="@color/text_primary"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -23,7 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/label_title"
-            android:textSize="16sp"
+            android:textColor="@color/text_primary"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <EditText
@@ -32,14 +35,17 @@
             android:layout_height="wrap_content"
             android:hint="@string/label_title"
             android:importantForAutofill="no"
-            android:inputType="textCapSentences" />
+            android:inputType="textCapSentences"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/spacing_lg"
             android:text="@string/label_description"
-            android:textSize="16sp"
+            android:textColor="@color/text_primary"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <EditText
@@ -50,14 +56,17 @@
             android:hint="@string/label_description"
             android:importantForAutofill="no"
             android:inputType="textMultiLine|textCapSentences"
-            android:minLines="3" />
+            android:minLines="3"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/spacing_lg"
             android:text="@string/label_priority"
-            android:textSize="16sp"
+            android:textColor="@color/text_primary"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <Spinner
@@ -68,9 +77,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/spacing_lg"
             android:text="@string/label_categories"
-            android:textSize="16sp"
+            android:textColor="@color/text_primary"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <EditText
@@ -79,37 +89,52 @@
             android:layout_height="wrap_content"
             android:hint="@string/label_categories"
             android:importantForAutofill="no"
-            android:inputType="textCapSentences" />
+            android:inputType="textCapSentences"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary" />
 
         <CheckBox
             android:id="@+id/check_done"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@string/label_done" />
-
-        <TextView
-            android:id="@+id/text_due_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@string/todo_due_date_placeholder"
-            android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/button_choose_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/button_choose_date" />
+            android:layout_marginTop="@dimen/spacing_lg"
+            android:text="@string/label_done"
+            android:textColor="@color/text_primary"
+            android:textSize="15sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/spacing_lg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_due_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/todo_due_date_placeholder"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/button_choose_date"
+                style="@style/AppButtonPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_choose_date" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xl"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button_save"
+                style="@style/AppButtonPrimary"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -117,9 +142,10 @@
 
             <Button
                 android:id="@+id/button_delete"
+                style="@style/AppButtonDelete"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="@dimen/spacing_md"
                 android:layout_weight="1"
                 android:text="@string/button_delete" />
         </LinearLayout>

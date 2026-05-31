@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#1565C0</color>
+    <color name="primary_dark">#0D47A1</color>
+    <color name="background">#F0F2F5</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="text_primary">#1A1A2E</color>
+    <color name="text_secondary">#5C6880</color>
+    <color name="divider">#DDE1E9</color>
+    <color name="status_open">#E65100</color>
+    <color name="status_done">#2E7D32</color>
+    <color name="delete_red">#C62828</color>
+    <color name="button_text_light">#FFFFFF</color>
+</resources>
